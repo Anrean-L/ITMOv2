@@ -10,7 +10,7 @@
 | [Лекция 2: LLM и промт инжениринг. Введение в агенты](./lection_2_AI%20engineering%20tools.pdf) | [Ссылка](https://avito.ktalk.ru/recordings/CkhzAIHktUuQ33NQfDUy) |
 | [Лекция 3: Локальные модели](./lection_3_AI%20engineering%20tools.pptx) | [Ссылка](https://avito.ktalk.ru/recordings/21b9nTeDH1Mu3QKbqmba) |
 | Лекция 4: Кодинг агенты. Управление контекстом |[Ссылка](https://avito.ktalk.ru/recordings/I05ThkpcQXA1akGwvxmd) |
-| Лекция 5: Spec-driven разработка с AI-агентами | |
+| Лекция 5: Spec-driven разработка с AI-агентами |[Ссылка](https://avito.ktalk.ru/recordings/h97Hp1y7ZAodGoCIRLC3) |
 | Лекция 6: AI-evaluation: бенчмарки | |
 | Лекция 7: Организация код-ревью с помощью N8N и поддержка пользователя с помощью AI инструментов | |
 | Лекция + Практика 8: Дизайн на фронтенде | |
