@@ -1,0 +1,19 @@
+{
+    "description": "Run project verification automatically after file edits.",
+    "hooks": {
+        "PostToolUse": [
+            {
+                "matcher": "^apply_patch$",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "python3 .codex/hooks/run_checks.py",
+                        "statusMessage": "Running automatic project checks",
+                        "timeout": 30,
+                        "additionalContextLimit": 2000
+                    }
+                ]
+            }
+        ]
+    }
+}
