@@ -1,0 +1,49 @@
+:root { color-scheme: light; font-family: Geist, system-ui, sans-serif; color: #0a0a0a; background: #f8f8f8; font-size: 16px; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+button, input, summary { font: inherit; }
+button, .file-picker, summary { cursor: pointer; }
+button:focus-visible, .file-input:focus-visible + .file-name, .file-picker:has(+ .file-input:focus-visible), summary:focus-visible { outline: 3px solid #1d5fbf; outline-offset: 3px; }
+.topbar { background: #fff; border-bottom: 1px solid #e6e6e6; }
+.topbar-inner { max-width: 1136px; margin: auto; padding: 0 24px; height: 58px; display: flex; align-items: center; gap: 10px; }
+.brand-mark { font-size: 21px; line-height: 1; }
+.topbar-label { color: #595959; margin-left: 12px; font-size: 14px; }
+.workspace { max-width: 1136px; margin: 0 auto; padding: 34px 24px 72px; }
+h1, h2, p { margin: 0; }
+h1 { font-size: 24px; line-height: 1.25; font-weight: 600; }
+h2 { font-size: 16px; line-height: 1.4; font-weight: 600; }
+.heading p, .panel-heading p, .section-title p, .table-title p, .result-note { color: #595959; font-size: 14px; line-height: 1.5; margin-top: 5px; }
+.heading { margin-bottom: 24px; }
+.file-panel, .results { background: #fff; border: 1px solid #e6e6e6; border-radius: 8px; padding: 24px; }
+.file-panel { margin-bottom: 16px; }
+.file-actions { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+.file-picker, .primary { border-radius: 6px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; font-size: 14px; font-weight: 600; }
+.file-picker { border: 1px solid #767676; background: #fff; white-space: nowrap; }
+.file-input { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.file-name { flex: 1; min-width: 0; overflow-wrap: anywhere; font-size: 14px; color: #404040; }
+.primary { border: 1px solid #141414; color: #fff; background: #141414; }
+.primary:disabled { color: #595959; background: #ededed; border-color: #b0b0b0; cursor: not-allowed; }
+details { margin-top: 16px; color: #404040; font-size: 14px; line-height: 1.55; }
+summary { min-height: 44px; display: flex; align-items: center; text-decoration: underline; text-underline-offset: 3px; }
+summary::before { content: '▸'; display: inline-block; margin-right: 8px; text-decoration: none; }
+details[open] summary::before { content: '▾'; }
+details p { max-width: 70ch; padding: 0 0 8px 18px; }
+.section-title { margin-bottom: 20px; }
+.status { background: #f8f8f8; border: 1px solid #e6e6e6; padding: 18px; color: #404040; line-height: 1.5; border-radius: 6px; }
+.status:empty { display: none; }
+.error { border-left: 4px solid #a51d25; background: #fff3f2; color: #74161b; padding: 16px; line-height: 1.5; overflow-wrap: anywhere; }
+.summary { display: flex; gap: 0; border: 1px solid #e6e6e6; border-radius: 6px; margin-bottom: 28px; }
+.summary > div { flex: 1; padding: 17px 20px; min-width: 0; }
+.summary > div + div { border-left: 1px solid #e6e6e6; }
+.summary span { display: block; color: #595959; font-size: 14px; }
+.summary strong { display: block; font-size: 30px; font-weight: 500; margin-top: 5px; font-variant-numeric: tabular-nums; }
+.table-title { margin-bottom: 16px; }
+.table-header { display: flex; justify-content: space-between; color: #595959; font-size: 13px; padding: 0 12px 10px; border-bottom: 1px solid #ddd; }
+.column-list { list-style: none; margin: 0; padding: 0; }
+.column-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 16px; align-items: center; min-height: 52px; border-bottom: 1px solid #eee; padding: 12px; font-size: 14px; }
+.column-name { min-width: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+.column-position { color: #595959; margin-right: 10px; font-variant-numeric: tabular-nums; }
+.column-count { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.column-note { display: block; color: #595959; font-size: 13px; margin-top: 3px; }
+.result-note { margin-top: 18px; }
+@media (max-width: 640px) { .workspace { padding: 24px 16px 48px; } .topbar-inner { padding: 0 16px; } .file-panel, .results { padding: 18px 16px; } .file-actions { flex-wrap: wrap; } .file-name { flex: 1 1 50%; } .primary { width: 100%; } .summary > div { padding: 14px; } .topbar-label { display: none; } }
