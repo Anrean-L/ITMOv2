@@ -52,6 +52,18 @@ class HttpTest(unittest.TestCase):
         self.assertEqual((status, json.loads(body)), (200, {"status": "ok"}))
         self.assertEqual(self.call("GET", "/missing")[0], 404)
 
+    def test_security_controls_over_http(self):
+        status, _, body = self.call("POST", "/login", {"username": "alice", "password": "learn-alice"})
+        token = json.loads(body)["token"]
+        auth = {"X-Token": token}
+        self.assertEqual(self.call("GET", "/profile?id=2", headers=auth)[0], 403)
+        self.assertEqual(self.call("GET", "/admin/export", headers={**auth, "X-Role": "staff"})[0], 403)
+        self.assertEqual(self.call("GET", "/debug/logs")[0], 401)
+        self.assertEqual(self.call("POST", "/assistant/execute", {"decision": {"tool": "delete_tree", "arguments": {"path": "files"}}}, auth)[0], 403)
+        status, _, body = self.call("POST", "/orders", {"product": "chair", "price": -1}, auth)
+        self.assertEqual((status, json.loads(body)["price"]), (201, 5000))
+        self.assertEqual(self.call("GET", "/files?user=alice&path=receipt.txt", headers=auth)[0], 200)
+
     def test_transport_only_binds_loopback(self):
         self.assertEqual(self.server.server_address[0], "127.0.0.1")
 
