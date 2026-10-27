@@ -1,0 +1,27 @@
+# Снимок конфигурации OpenCode
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "threat-judge": {
+      "description": "Independent reviewer of the submitted threat model",
+      "mode": "primary",
+      "prompt": "{file:./judge-system-prompt.md}",
+      "steps": 8,
+      "permission": {
+        "*": "deny",
+        "read": {
+          "*": "deny"
+        }
+      }
+    },
+    "shop-planner": {
+      "description": "Model under test: produces a shop action without executing tools",
+      "mode": "primary",
+      "prompt": "{file:./planner-system.txt}",
+      "permission": { "*": "deny" }
+    }
+  }
+}
+```
