@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Анализ CSV — csvpeek</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner"><span class="brand-mark" aria-hidden="true">▦</span><strong>csvpeek</strong><span class="topbar-label">Анализ файлов</span></div></header>
+  <main class="workspace">
+    <div class="heading"><div><h1>Анализ CSV</h1><p>Проверьте размер файла и пропуски в столбцах.</p></div></div>
+    <section class="file-panel" aria-labelledby="file-heading">
+      <div class="panel-heading"><div><h2 id="file-heading">Файл для анализа</h2><p>CSV в UTF-8, разделитель — запятая. До 10 МиБ.</p></div></div>
+      <div class="file-actions">
+        <label id="file-label" class="file-picker" for="file">Выбрать файл</label>
+        <input id="file" class="file-input" type="file" aria-describedby="file-help">
+        <span id="file-name" class="file-name">Файл не выбран</span>
+        <button id="analyze" class="primary" type="button" disabled>Анализировать</button>
+      </div>
+      <details id="file-help"><summary>Ограничения и правила анализа</summary><p>До 1 000 столбцов, 100 000 записей данных и 128 КиБ на поле. Первая запись — заголовок. Пропущенными считаются только пустые поля; пробелы и NA — значения.</p></details>
+    </section>
+    <section class="results" aria-labelledby="results-heading">
+      <div class="section-title"><div><h2 id="results-heading">Результаты анализа</h2><p id="result-file"></p></div></div>
+      <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Выберите CSV-файл, чтобы увидеть результаты анализа.</div>
+      <div id="error" class="error" role="alert" hidden></div>
+      <div id="result" hidden>
+        <div class="summary" aria-label="Размер файла"><div><span>Строки данных</span><strong id="rows"></strong></div><div><span>Столбцы</span><strong id="columns"></strong></div></div>
+        <div class="table-title"><div><h2>Пропуски по столбцам</h2><p>В исходном порядке файла</p></div></div>
+        <div class="table-header" aria-hidden="true"><span>Столбец</span><span>Пропуски</span></div>
+        <ol id="column-list" class="column-list" aria-label="Пропуски по столбцам"></ol>
+        <p class="result-note">Строки посчитаны без заголовка. Пропуски — только пустые поля.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
