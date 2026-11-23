@@ -1,0 +1,381 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "rule": {
+                    "interval": [
+                        {
+                            "field": "cronExpression",
+                            "expression": "0 9 * * MON"
+                        }
+                    ]
+                }
+            },
+            "type": "n8n-nodes-base.scheduleTrigger",
+            "typeVersion": 1.4,
+            "position": [
+                0,
+                0
+            ],
+            "id": "2f932f17-5061-493f-9049-57edbbcf6b38",
+            "name": "Schedule Trigger"
+        },
+        {
+            "parameters": {},
+            "type": "n8n-nodes-base.manualTrigger",
+            "typeVersion": 1,
+            "position": [
+                0,
+                -176
+            ],
+            "id": "c18fc22c-31f6-4601-aae3-e3e3602ad12d",
+            "name": "When clicking ‘Execute workflow’"
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "5a1b194c-3028-4e11-9f3e-f0b84288a158",
+                            "name": "repo",
+                            "value": "Anrean-L/ai-github-automatication",
+                            "type": "string"
+                        },
+                        {
+                            "id": "bdf4a67f-16ca-4921-b3f2-a2111a0e59a4",
+                            "name": "from",
+                            "value": "={{ $now.minus({ days: 7 }).toUTC().toFormat(\"yyyy-MM-dd'T'HH:mm:ss'Z'\") }}",
+                            "type": "string"
+                        },
+                        {
+                            "id": "d5e84783-e851-4328-b62a-9926fa50adab",
+                            "name": "to",
+                            "value": "={{ $now.toUTC().toFormat(\"yyyy-MM-dd'T'HH:mm:ss'Z'\") }}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.5,
+            "position": [
+                256,
+                0
+            ],
+            "id": "35210f17-19d7-4762-8b13-40e7d6748773",
+            "name": "Report Window"
+        },
+        {
+            "parameters": {
+                "url": "https://api.github.com/search/issues",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpBearerAuth",
+                "sendQuery": true,
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "per_page",
+                            "value": "100"
+                        },
+                        {
+                            "name": "=q",
+                            "value": "=repo:{{ $json.repo }} is:issue created:{{ $json.from }}..{{ $json.to }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.5,
+            "position": [
+                512,
+                -272
+            ],
+            "id": "7d9f666c-b02b-4f1f-b52f-af951a5c286b",
+            "name": "Opened Issues",
+            "credentials": {
+                "httpBearerAuth": {
+                    "id": "OVs0UMIwnkMw2HaZ",
+                    "name": "Bearer Auth account 39"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "url": "https://api.github.com/search/issues",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpBearerAuth",
+                "sendQuery": true,
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "per_page",
+                            "value": "100"
+                        },
+                        {
+                            "name": "=q",
+                            "value": "=repo:{{ $json.repo }} is:issue is:closed closed:{{ $json.from }}..{{ $json.to }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.5,
+            "position": [
+                512,
+                -96
+            ],
+            "id": "1f68e8d8-282d-4773-bce0-7596c06049f1",
+            "name": "Closed Issues",
+            "credentials": {
+                "httpBearerAuth": {
+                    "id": "OVs0UMIwnkMw2HaZ",
+                    "name": "Bearer Auth account 39"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "url": "https://api.github.com/search/issues",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpBearerAuth",
+                "sendQuery": true,
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "per_page",
+                            "value": "100"
+                        },
+                        {
+                            "name": "=q",
+                            "value": "=repo:{{ $json.repo }} is:issue is:open created:{{ $json.from }}..{{ $json.to }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.5,
+            "position": [
+                512,
+                80
+            ],
+            "id": "6d5878c2-685d-455b-aa7c-edb54e3f87b6",
+            "name": "Still Open",
+            "credentials": {
+                "httpBearerAuth": {
+                    "id": "OVs0UMIwnkMw2HaZ",
+                    "name": "Bearer Auth account 39"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "url": "https://api.github.com/search/issues",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpBearerAuth",
+                "sendQuery": true,
+                "queryParameters": {
+                    "parameters": [
+                        {
+                            "name": "per_page",
+                            "value": "100"
+                        },
+                        {
+                            "name": "=q",
+                            "value": "=repo:{{ $json.repo }} is:issue label:needs-triage created:{{ $json.from }}..{{ $json.to }}"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.5,
+            "position": [
+                512,
+                272
+            ],
+            "id": "5a5a6d28-8d81-41c9-bdab-83bd53616a10",
+            "name": "Needs Triage",
+            "credentials": {
+                "httpBearerAuth": {
+                    "id": "OVs0UMIwnkMw2HaZ",
+                    "name": "Bearer Auth account 39"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "numberInputs": 4
+            },
+            "type": "n8n-nodes-base.merge",
+            "typeVersion": 3.2,
+            "position": [
+                800,
+                -32
+            ],
+            "id": "2514047b-094a-4e0e-8192-db2c8bef9773",
+            "name": "Merge"
+        },
+        {
+            "parameters": {
+                "jsCode": "const { repo, from, to } = $('Report Window').first().json;\nconst metrics = [\n  ['Открыто за неделю', $('Opened Issues').first().json],\n  ['Закрыто за неделю', $('Closed Issues').first().json],\n  ['Из новых всё ещё открыто', $('Still Open').first().json],\n  ['Из новых с needs-triage', $('Needs Triage').first().json],\n];\n\nfor (const [name, result] of metrics) {\n  if (result.incomplete_results || !Array.isArray(result.items)) {\n    throw new Error(`Неполный ответ GitHub: ${name}`);\n  }\n}\n\nconst opened = metrics[0][1];\nif (opened.items.length !== opened.total_count) {\n  throw new Error('Для группировки всех новых Issues нужна пагинация.');\n}\n\nconst types = ['bug', 'task', 'feature', 'spam'];\nconst byType = new Map();\nconst byAuthor = new Map();\n\nfor (const issue of opened.items) {\n  const labels = issue.labels.map(label => label.name);\n  const type = labels.includes('needs-triage')\n    ? 'needs-triage'\n    : types.find(name => labels.includes(name)) ?? 'без типа';\n  const author = issue.user?.login ?? 'неизвестен';\n\n  byType.set(type, (byType.get(type) ?? 0) + 1);\n  byAuthor.set(author, (byAuthor.get(author) ?? 0) + 1);\n}\n\nconst escape = value => String(value)\n  .replaceAll('&', '&amp;')\n  .replaceAll('<', '&lt;')\n  .replaceAll('>', '&gt;');\n\nconst table = (heading, rows) =>\n  `<h3>${heading}</h3><table border=\"1\" cellpadding=\"6\" cellspacing=\"0\">` +\n  '<tr><th>Название</th><th>Количество</th></tr>' +\n  rows.map(([name, count]) => `<tr><td>${escape(name)}</td><td>${count}</td></tr>`).join('') +\n  '</table>';\n\nconst counts = Object.fromEntries(metrics.map(([name, result]) => [name, result.total_count]));\n\nreturn [{\n  json: {\n    repo, from, to, counts,\n    byType: Object.fromEntries(byType),\n    byAuthor: Object.fromEntries(byAuthor),\n    subject: `Недельный отчёт по Issues · ${repo}`,\n    html: `<h2>${escape(repo)}</h2><p>${escape(from)} — ${escape(to)} (UTC)</p>` +\n      table('За неделю', Object.entries(counts)) +\n      table('Новые Issues по типам', [...byType]) +\n      table('Новые Issues по авторам', [...byAuthor]),\n  },\n}];"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                1040,
+                0
+            ],
+            "id": "ce35e5e1-32d9-4755-b232-bec445985f03",
+            "name": "Code in JavaScript"
+        },
+        {
+            "parameters": {
+                "fromEmail": "Revan66077088000@yandex.ru",
+                "toEmail": "anrean.augusta@gmail.com",
+                "subject": "={{ $json.subject }}",
+                "html": "={{ $json.html }}",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.emailSend",
+            "typeVersion": 2.1,
+            "position": [
+                1264,
+                0
+            ],
+            "id": "b400ebd8-19eb-41a6-98f1-ff9c80d1a11c",
+            "name": "Send an Email",
+            "webhookId": "2b86f51c-593d-4e96-8a15-8e01162b1cdd",
+            "credentials": {
+                "smtp": {
+                    "id": "GGHayF0buv0JsV00",
+                    "name": "SMTP account 24"
+                }
+            }
+        }
+    ],
+    "connections": {
+        "Schedule Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "Report Window",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "When clicking ‘Execute workflow’": {
+            "main": [
+                [
+                    {
+                        "node": "Report Window",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Report Window": {
+            "main": [
+                [
+                    {
+                        "node": "Opened Issues",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Closed Issues",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Still Open",
+                        "type": "main",
+                        "index": 0
+                    },
+                    {
+                        "node": "Needs Triage",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Opened Issues": {
+            "main": [
+                [
+                    {
+                        "node": "Merge",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Closed Issues": {
+            "main": [
+                [
+                    {
+                        "node": "Merge",
+                        "type": "main",
+                        "index": 1
+                    }
+                ]
+            ]
+        },
+        "Still Open": {
+            "main": [
+                [
+                    {
+                        "node": "Merge",
+                        "type": "main",
+                        "index": 2
+                    }
+                ]
+            ]
+        },
+        "Needs Triage": {
+            "main": [
+                [
+                    {
+                        "node": "Merge",
+                        "type": "main",
+                        "index": 3
+                    }
+                ]
+            ]
+        },
+        "Merge": {
+            "main": [
+                [
+                    {
+                        "node": "Code in JavaScript",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Code in JavaScript": {
+            "main": [
+                [
+                    {
+                        "node": "Send an Email",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "68dbbb4e8fa686c3fd4e9982ade6836edb66976f207553e7ac22df961581c78c"
+    }
+}

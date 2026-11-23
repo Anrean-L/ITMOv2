@@ -1,0 +1,398 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "conditions": {
+                    "options": {
+                        "caseSensitive": true,
+                        "leftValue": "",
+                        "typeValidation": "strict",
+                        "version": 3
+                    },
+                    "conditions": [
+                        {
+                            "id": "e04c52e3-5412-4cee-969b-5b9ce8c22b21",
+                            "leftValue": "={{ $json.body.action }}",
+                            "rightValue": "opened",
+                            "operator": {
+                                "type": "string",
+                                "operation": "equals"
+                            }
+                        }
+                    ],
+                    "combinator": "and"
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 2.3,
+            "position": [
+                240,
+                -64
+            ],
+            "id": "eac88b47-dfd8-4670-aaee-699ab36b4290",
+            "name": "If"
+        },
+        {
+            "parameters": {
+                "owner": {
+                    "__rl": true,
+                    "value": "Anrean-L",
+                    "mode": "list",
+                    "cachedResultName": "Anrean-L",
+                    "cachedResultUrl": "https://github.com/Anrean-L"
+                },
+                "repository": {
+                    "__rl": true,
+                    "value": "ai-github-automatication",
+                    "mode": "list",
+                    "cachedResultName": "ai-github-automatication",
+                    "cachedResultUrl": "https://github.com/Anrean-L/ai-github-automatication"
+                },
+                "events": [
+                    "issues"
+                ],
+                "options": {}
+            },
+            "type": "n8n-nodes-base.githubTrigger",
+            "typeVersion": 1,
+            "position": [
+                -16,
+                -64
+            ],
+            "id": "c09f8e0e-5047-4e35-a6ce-ff8fae1851fc",
+            "name": "Github Trigger",
+            "webhookId": "cc732d4e-dd4b-402a-ab6c-37b0968aca03",
+            "credentials": {
+                "githubApi": {
+                    "id": "eGYvIcxxWgoIY6ak",
+                    "name": "GitHub account 50"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "rules": {
+                    "values": [
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 4
+                                },
+                                "conditions": [
+                                    {
+                                        "leftValue": "={{ $json.route }}",
+                                        "rightValue": "bug",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals"
+                                        },
+                                        "id": "68cf85c0-6508-4602-80f2-c67a81a169a5"
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "bug"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 4
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "694a7f45-44b9-4f80-a9b9-429ca5081867",
+                                        "leftValue": "={{ $json.route }}",
+                                        "rightValue": "task",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "task"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 4
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "ecda9fc1-9686-4836-85b1-ccec310c8877",
+                                        "leftValue": "={{ $json.route }}",
+                                        "rightValue": "feature",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "feature"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 4
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "3abad3d0-1cf8-4507-9bfd-1d53a7a12b9e",
+                                        "leftValue": "={{ $json.route }}",
+                                        "rightValue": "spam",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "spam"
+                        },
+                        {
+                            "conditions": {
+                                "options": {
+                                    "caseSensitive": true,
+                                    "leftValue": "",
+                                    "typeValidation": "strict",
+                                    "version": 4
+                                },
+                                "conditions": [
+                                    {
+                                        "id": "736afe34-9f9a-47b1-8516-d9086bcf9230",
+                                        "leftValue": "={{ $json.route }}",
+                                        "rightValue": "unknown",
+                                        "operator": {
+                                            "type": "string",
+                                            "operation": "equals",
+                                            "name": "filter.operator.equals"
+                                        }
+                                    }
+                                ],
+                                "combinator": "and"
+                            },
+                            "renameOutput": true,
+                            "outputKey": "unknown"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.switch",
+            "typeVersion": 3.5,
+            "position": [
+                992,
+                -128
+            ],
+            "id": "53166d76-5e7f-48df-a350-da1753ef6e35",
+            "name": "Switch"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "=https://api.github.com/repos/{{ $('Github Trigger').first().json.body.repository.full_name }}/issues/{{ $('Github Trigger').first().json.body.issue.number }}/labels",
+                "authentication": "genericCredentialType",
+                "genericAuthType": "httpBearerAuth",
+                "sendBody": true,
+                "specifyBody": "json",
+                "jsonBody": "={{ JSON.stringify({ labels: [$json.label] }) }}",
+                "options": {}
+            },
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.5,
+            "position": [
+                1360,
+                -80
+            ],
+            "id": "d19a1163-a832-4d03-a1e7-db2d3feaeeff",
+            "name": "HTTP Request",
+            "credentials": {
+                "httpBearerAuth": {
+                    "id": "OVs0UMIwnkMw2HaZ",
+                    "name": "Bearer Auth account 39"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "jsCode": "const result = $input.first().json;\nconst { type, confidence } = result.output ?? result.text ?? result;\n\nconst knownType = ['bug', 'task', 'feature', 'spam'].includes(type);\nconst route =\n  knownType && typeof confidence === 'number' && confidence >= 0.8\n    ? type\n    : 'unknown';\n\nreturn [{\n  json: {\n    type,\n    confidence,\n    route,\n    label: route === 'unknown' ? 'needs-triage' : route,\n  },\n}];"
+            },
+            "type": "n8n-nodes-base.code",
+            "typeVersion": 2,
+            "position": [
+                800,
+                -80
+            ],
+            "id": "5bfa9790-5bed-489a-9719-63634cce3f68",
+            "name": "Route Issue"
+        },
+        {
+            "parameters": {
+                "workflowId": {
+                    "__rl": true,
+                    "value": "PSOlUjpsvsqOwbmm",
+                    "mode": "list",
+                    "cachedResultUrl": "/workflow/PSOlUjpsvsqOwbmm",
+                    "cachedResultName": "Issue Classifier"
+                },
+                "workflowInputs": {
+                    "mappingMode": "defineBelow",
+                    "value": {
+                        "title": "={{ $json.body.issue.title }}",
+                        "body": "={{ $json.body.issue.body ?? '' }}"
+                    },
+                    "matchingColumns": [],
+                    "schema": [
+                        {
+                            "id": "title",
+                            "displayName": "title",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "canBeUsedToMatch": true,
+                            "type": "string",
+                            "removed": false
+                        },
+                        {
+                            "id": "body",
+                            "displayName": "body",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "canBeUsedToMatch": true,
+                            "type": "string",
+                            "removed": false
+                        }
+                    ],
+                    "attemptToConvertTypes": false,
+                    "convertFieldsToString": true
+                },
+                "options": {
+                    "waitForSubWorkflow": true
+                }
+            },
+            "type": "n8n-nodes-base.executeWorkflow",
+            "typeVersion": 1.4,
+            "position": [
+                528,
+                -80
+            ],
+            "id": "d9e7dd7b-543a-4416-a07f-fe134349fdc2",
+            "name": "Call 'Issue Classifier'"
+        }
+    ],
+    "connections": {
+        "If": {
+            "main": [
+                [
+                    {
+                        "node": "Call 'Issue Classifier'",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Github Trigger": {
+            "main": [
+                [
+                    {
+                        "node": "If",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Switch": {
+            "main": [
+                [
+                    {
+                        "node": "HTTP Request",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "HTTP Request",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "HTTP Request",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "HTTP Request",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "HTTP Request",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Route Issue": {
+            "main": [
+                [
+                    {
+                        "node": "Switch",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Call 'Issue Classifier'": {
+            "main": [
+                [
+                    {
+                        "node": "Route Issue",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {},
+    "meta": {
+        "templateCredsSetupCompleted": true,
+        "instanceId": "68dbbb4e8fa686c3fd4e9982ade6836edb66976f207553e7ac22df961581c78c"
+    }
+}
